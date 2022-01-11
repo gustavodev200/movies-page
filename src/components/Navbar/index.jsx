@@ -1,19 +1,17 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { DivInput, NavbarStyle } from "./styles";
 import { FiSearch } from "react-icons/fi";
 import { PageMovieContext } from "../../contexts/MoviesProvider/context";
-import MoviesList from "../MoviesList";
+import { valueInputMovie } from "../../contexts/MoviesProvider/actions";
 
 const Navbar = () => {
-  const [valueInput, setValueInput] = useState("");
-  const input = useRef(null);
+
   const moviesContextApp = useContext(PageMovieContext);
   const { movieState, moviesDispatch } = moviesContextApp;
-  
 
-  useEffect(() => {
-    console.log(input.current.value)
-  },[valueInput]);
+  useEffect(()=> {
+    valueInputMovie(moviesDispatch)
+  },[moviesDispatch])
 
   return (
     <NavbarStyle>
@@ -36,15 +34,14 @@ const Navbar = () => {
           <input
             type="search"
             placeholder="Search movies"
-            value={valueInput}
-            ref={input}
-            onChange={(e) => setValueInput(e.target.value)}
+            value={movieState.movieInput}
+            onChange={() => valueInputMovie(moviesDispatch)}
           />
           <a>
             <FiSearch cursor="pointer" />
           </a>
         </DivInput>
-        {movieState && movieState.movies.map((movie) => <MoviesList />)}
+        {console.log(movieState, moviesDispatch)}
       </nav>
     </NavbarStyle>
   );

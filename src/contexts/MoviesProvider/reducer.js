@@ -11,8 +11,7 @@ export const reducer = (state, action) => {
       return { ...state, loading: true };
     }
     case types.MOVIES_VALUE_INPUT: {
-        console.log(action.payload);
-        return { ...state, searchMovie: action.payload };
+        return { ...state, movieInput: action.payload};
     }
   }
 
