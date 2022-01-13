@@ -1,17 +1,27 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DivInput, NavbarStyle } from "./styles";
 import { FiSearch } from "react-icons/fi";
 import { PageMovieContext } from "../../contexts/MoviesProvider/context";
 import { valueInputMovie } from "../../contexts/MoviesProvider/actions";
+import axios from "axios";
 
 const Navbar = () => {
-
   const moviesContextApp = useContext(PageMovieContext);
   const { movieState, moviesDispatch } = moviesContextApp;
+  console.log(movieState)
 
-  useEffect(()=> {
-    valueInputMovie(moviesDispatch)
-  },[moviesDispatch])
+  // const [inputValue, setInputValue] = useState('')
+  // const [movie, setMovie] = useState({})
+
+  // const movieSearch = async () => {
+  //   await axios.post(`http://www.omdbapi.com/?s=${inputValue}&apikey=cb5a1b71`)
+  //   .then(res => setMovie(res.data))
+  // }
+
+
+  useEffect(() => {
+    valueInputMovie(moviesDispatch);
+  }, [moviesDispatch]);
 
   return (
     <NavbarStyle>
@@ -34,14 +44,13 @@ const Navbar = () => {
           <input
             type="search"
             placeholder="Search movies"
-            value={movieState.movieInput}
+            value={movieState}
             onChange={() => valueInputMovie(moviesDispatch)}
           />
-          <a>
-            <FiSearch cursor="pointer" />
+          <a >
+            <FiSearch cursor="pointer" fontSize={18}/>
           </a>
         </DivInput>
-        {console.log(movieState, moviesDispatch)}
       </nav>
     </NavbarStyle>
   );

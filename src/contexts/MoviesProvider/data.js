@@ -1,5 +1,5 @@
 export const data = {
-    movieInput: "",
+    movieInput: 'Gustavo',
     movies: [],
     loading: false,
 }

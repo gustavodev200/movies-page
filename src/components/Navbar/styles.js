@@ -52,4 +52,10 @@ export const DivInput = styled.div`
     padding: 0 1rem;
     font-weight: 600;
   }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;

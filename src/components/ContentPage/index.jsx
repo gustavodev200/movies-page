@@ -1,5 +1,4 @@
 import React from 'react';
-import MoviesList from '../MoviesList';
 import Navbar from '../Navbar';
 import { ContentStyle } from './styles';
 
