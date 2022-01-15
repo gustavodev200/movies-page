@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const NavbarStyle = styled.div`
   display: flex;
   width: 100%;
+  margin-bottom: 2rem;
 
   nav {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 2rem 4rem;
 
     ul {
       display: flex;

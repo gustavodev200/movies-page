@@ -12,22 +12,45 @@ import {
   CoverTheMovie,
 } from "./style";
 
+import theMovie from "../../img/the_movie.svg";
+import { AiFillStar, AiOutlineStar, AiFillPlayCircle } from "react-icons/ai";
+
 const MainContent = () => {
   return (
     <Content>
       <FirstContent>
-        <TitleText>TITLE FILME</TitleText>
+        <TitleText>
+          <h1>TITLE FILME</h1>
+        </TitleText>
         <StarsInfo>
-          <Stars>Stars</Stars>
-          <ButtonTrailer>Watch Trailer</ButtonTrailer>
+          <Stars>
+            <AiFillStar color="yellow" fontSize={25} />
+            <AiFillStar color="yellow" fontSize={25} />
+            <AiFillStar color="yellow" fontSize={25} />
+            <AiFillStar color="yellow" fontSize={25} />
+            <AiOutlineStar color="yellow" fontSize={25} />
+          </Stars>
+          <ButtonTrailer>
+            <AiFillPlayCircle color="rgba(255,255,255, .5)" fontSize={35} />
+            <p>Watch Trailer</p>
+          </ButtonTrailer>
         </StarsInfo>
         <Description>
-          Depois de ser picado por uma aranha geneticamente modificada em uma
-          demonstração científica, o jovem nerd Peter Parker
+          <p>
+            Em Homem-Aranha: Sem Volta para Casa, Peter Parker (Tom Holland)
+            precisará lidar com as consequências da sua identidade como o herói
+            mais querido do mundo após ter sido revelada pela reportagem do
+            Clarim Diário, com uma gravação feita por Mysterio (Jake Gyllenhaal)
+            no filme anterior.
+          </p>
         </Description>
-        <TrailerMovie>Trailer</TrailerMovie>
+        <TrailerMovie>
+          <AiFillPlayCircle color="#b912129d" fontSize={80} />
+        </TrailerMovie>
       </FirstContent>
-      <CoverTheMovie>Card</CoverTheMovie>
+      <CoverTheMovie>
+        <img src={theMovie} alt="Capa Homem Aranha" />
+      </CoverTheMovie>
     </Content>
   );
 };

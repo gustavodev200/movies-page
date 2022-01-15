@@ -1,15 +1,18 @@
-import React from 'react';
-import MainContent from '../MainContent';
-import Navbar from '../Navbar';
-import { ContentStyle } from './styles';
+import React from "react";
+import MainContent from "../MainContent";
+import Navbar from "../Navbar";
+import { Container } from "./container";
+import { ContentStyle } from "./styles";
 
 const ContentPage = () => {
-    return ( 
-        <ContentStyle>
-            <Navbar />
-            <MainContent />
-        </ContentStyle>
-     );
-}
- 
+  return (
+    <ContentStyle>
+      <Container>
+        <Navbar />
+        <MainContent />
+      </Container>
+    </ContentStyle>
+  );
+};
+
 export default ContentPage;
