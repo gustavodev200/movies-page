@@ -25,6 +25,9 @@ export const NavbarStyle = styled.div`
           text-decoration: none;
           color: #fff;
           font-weight: bold;
+          &:hover {
+            border-bottom: 2px solid #fff;
+          }
         }
       }
     }

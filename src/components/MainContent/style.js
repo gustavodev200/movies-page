@@ -39,7 +39,7 @@ export const ButtonTrailer = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: .1rem 1.5rem;
+  padding: .1rem 1rem;
   margin-left: 2rem;
   background-color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
@@ -49,7 +49,7 @@ export const ButtonTrailer = styled.a`
 
   p {
     font-weight: bold;
-    margin-left: 0.8rem;
+    margin-left: 0.5rem;
   }
 `;
 

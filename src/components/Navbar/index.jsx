@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { DivInput, NavbarStyle } from "./styles";
 import { FiSearch } from "react-icons/fi";
+import axios from "axios";
 
 const Navbar = () => {
   const [inputValue, setInputValue] = useState("");
+  const [moviesState, setMoviesState] = useState([])
   const input = useRef(null);
 
   useEffect(() => {
-    console.log(input.current.value);
+    searchMovies()
   }, [inputValue]);
 
   // const [movie, setMovie] = useState({})
@@ -16,6 +18,11 @@ const Navbar = () => {
   //   await axios.post(`http://www.omdbapi.com/?s=${inputValue}&apikey=cb5a1b71`)
   //   .then(res => setMovie(res.data))
   // }
+
+  async function searchMovies(value) {
+    const movies = await axios.post(`http://www.omdbapi.com/?s=${value}&apikey=cb5a1b71`)
+    await setMoviesState(movies.data.Search)
+  }
 
   return (
     <NavbarStyle>
@@ -40,7 +47,10 @@ const Navbar = () => {
             placeholder="Search movies"
             ref={input}
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={(e) => (
+              setInputValue(e.target.value),
+              searchMovies(inputValue)
+            )}
           />
           <a>
             <FiSearch cursor="pointer" fontSize={18} />

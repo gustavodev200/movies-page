@@ -20,7 +20,7 @@ const MainContent = () => {
     <Content>
       <FirstContent>
         <TitleText>
-          <h1>TITLE FILME</h1>
+          <h1>Homem-Aranha: Sem Volta para Casa</h1>
         </TitleText>
         <StarsInfo>
           <Stars>
@@ -32,7 +32,7 @@ const MainContent = () => {
           </Stars>
           <ButtonTrailer>
             <AiFillPlayCircle color="rgba(255,255,255, .5)" fontSize={35} />
-            <p>Watch Trailer</p>
+            <p>Play</p>
           </ButtonTrailer>
         </StarsInfo>
         <Description>
