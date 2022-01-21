@@ -2,40 +2,31 @@ import React, { useEffect, useRef, useState } from "react";
 import { DivInput, NavbarStyle } from "./styles";
 import { FiSearch } from "react-icons/fi";
 import axios from "axios";
-import Tmdb from "../../api/Tmdb";
+import { API_BASE, API_KEY } from "../../api/Tmdb";
 import MoviesRow from "../MoviesRow";
 
 const Navbar = () => {
   const [inputValue, setInputValue] = useState("");
   const [moviesState, setMoviesState] = useState([]);
-  const input = useRef(null);
+  const input = useRef("");
+
+  const movieSearch = async () => {
+    const config = {
+      method: "get",
+      url: `${API_BASE}/search/movie?api_key=${API_KEY}&language=pt-BR&query=${input.current.value}`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    axios(config)
+      .then((res) => setMoviesState(res.data.results))
+      .catch((err) => console.error(err));
+  };
 
   useEffect(() => {
-    const loadAll = async () => {
-      let list = await Tmdb.getHomeList();
-      setMoviesState(list);
-    };
-
-    loadAll();
-  }, []);
-
-  // useEffect(() => {
-  //   searchMovies();
-  // }, [inputValue]);
-
-  // const [movie, setMovie] = useState({})
-
-  // const movieSearch = async () => {
-  //   await axios.post(`http://www.omdbapi.com/?s=${inputValue}&apikey=cb5a1b71`)
-  //   .then(res => setMovie(res.data))
-  // }
-
-  // async function searchMovies(value) {
-  //   const movies = await axios.post(
-  //     `http://www.omdbapi.com/?s=${value}&apikey=cb5a1b71`
-  //   );
-  //   await setMoviesState(movies.data.Search);
-  // }
+    movieSearch();
+    console.log(input.current.value);
+  }, [inputValue]);
 
   return (
     <NavbarStyle>
@@ -60,19 +51,15 @@ const Navbar = () => {
             placeholder="Search movies"
             ref={input}
             value={inputValue}
-            onChange={
-              (e) => setInputValue(e.target.value) //searchMovies(inputValue)
-            }
+            onChange={(e) => setInputValue(e.target.value)}
           />
           <a>
             <FiSearch cursor="pointer" fontSize={18} />
           </a>
         </DivInput>
-        <div>
-          {moviesState.map((item, key) => (
-            <MoviesRow key={key} title={item.title} items={item.items} />
-          ))}
-        </div>
+        {moviesState.map((item, key) => (
+          <MoviesRow title={item.title} popularity ={item.popularity}/>
+        ))}
       </nav>
     </NavbarStyle>
   );

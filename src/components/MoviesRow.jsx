@@ -1,33 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react/cjs/react.development";
 import styled from "styled-components";
 
-const MoviesRow = ({ title, items }) => {
+const MoviesRow = ({ title, popularity }) => {
+
   return (
     <FlatList>
-      <div>
-        {items.results.length > 0 &&
-          items.results.map((item, key) => (
-            <img src={`https://image.tmdb.org/t/p/w100${item.poster_path}`} />
-          ))}
-      </div>
-      <div>
-        <h2>{title}</h2>
-        <div>
-          <p>2.9</p>
-        </div>
-      </div>
+      <h2>{title}</h2>
     </FlatList>
   );
 };
 
 const FlatList = styled.div`
-  width: 15rem;
-  height: 6rem;
+  width: 20rem;
+  height: 3rem;
   border-radius: 1rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: #fff;
+  justify-content: center;
+  background: #000000;
+  margin: 1rem 0;
+
+  h2 {
+    font-size: .5rem;
+    color: #fff;
+  }
+
+  p {
+    color: #fff
+  }
 `;
 
 export default MoviesRow;

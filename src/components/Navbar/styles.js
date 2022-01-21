@@ -10,6 +10,8 @@ export const NavbarStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: column;
+    overflow: scroll;
 
     ul {
       display: flex;
@@ -37,12 +39,17 @@ export const NavbarStyle = styled.div`
 export const DivInput = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const InputStyle = styled.div`
   width: 15rem;
   height: 2rem;
 
   border-radius: 2rem;
   background: rgba(0, 0, 0, 0.3);
   color: #fff;
+  display: flex;
+  align-items: center;
 
   input {
     width: 85%;
@@ -62,3 +69,4 @@ export const DivInput = styled.div`
     align-items: center;
   }
 `;
+export const List = styled.div``;
