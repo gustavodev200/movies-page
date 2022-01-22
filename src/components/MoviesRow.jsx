@@ -25,6 +25,7 @@ const FlatList = styled.div`
   justify-content: flex-start;
   background: #ffffff;
   margin: 0.2rem 0;
+  cursor: pointer;
 
 
   h2 {

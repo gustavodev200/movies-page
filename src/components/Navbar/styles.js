@@ -86,31 +86,6 @@ export const ListMovies = styled.div`
   border-radius: 0.5rem;
   overflow-y: scroll;
   &::-webkit-scrollbar {
-    color: transparent;
-    background-color: transparent;
-  } /* 1 */
-  &::-webkit-scrollbar-button {
-    color: transparent;
-    background-color: transparent;
-  } /* 2 */
-  &::-webkit-scrollbar-track {
-    color: transparent;
-    background-color: transparent;
-  } /* 3 */
-  &::-webkit-scrollbar-track-piece {
-    color: transparent;
-    background-color: transparent;
-  } /* 4 */
-  &::-webkit-scrollbar-thumb {
-    color: transparent;
-    background-color: transparent;
-  } /* 5 */
-  &::-webkit-scrollbar-corner {
-    color: transparent;
-    background-color: transparent;
-  } /* 6 */
-  &::-webkit-resizer {
-    color: transparent;
-    background-color: transparent;
+    display: none;
   }
 `;
