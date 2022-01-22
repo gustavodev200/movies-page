@@ -10,8 +10,6 @@ export const NavbarStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-direction: column;
-    overflow: scroll;
 
     ul {
       display: flex;
@@ -39,11 +37,10 @@ export const NavbarStyle = styled.div`
 export const DivInput = styled.div`
   display: flex;
   align-items: center;
-`;
 
-export const InputStyle = styled.div`
   width: 15rem;
   height: 2rem;
+  margin-bottom: 0.5rem;
 
   border-radius: 2rem;
   background: rgba(0, 0, 0, 0.3);
@@ -69,4 +66,51 @@ export const InputStyle = styled.div`
     align-items: center;
   }
 `;
+
+export const InputStyle = styled.div``;
+
 export const List = styled.div``;
+export const GetList = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const ListMovies = styled.div`
+  margin-top: 32rem;
+  position: absolute;
+  width: 15rem;
+  height: 50vh;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    color: transparent;
+    background-color: transparent;
+  } /* 1 */
+  &::-webkit-scrollbar-button {
+    color: transparent;
+    background-color: transparent;
+  } /* 2 */
+  &::-webkit-scrollbar-track {
+    color: transparent;
+    background-color: transparent;
+  } /* 3 */
+  &::-webkit-scrollbar-track-piece {
+    color: transparent;
+    background-color: transparent;
+  } /* 4 */
+  &::-webkit-scrollbar-thumb {
+    color: transparent;
+    background-color: transparent;
+  } /* 5 */
+  &::-webkit-scrollbar-corner {
+    color: transparent;
+    background-color: transparent;
+  } /* 6 */
+  &::-webkit-resizer {
+    color: transparent;
+    background-color: transparent;
+  }
+`;

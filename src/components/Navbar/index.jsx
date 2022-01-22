@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { DivInput, NavbarStyle } from "./styles";
+import { DivInput, GetList, ListMovies, NavbarStyle } from "./styles";
 import { FiSearch } from "react-icons/fi";
 import axios from "axios";
 import { API_BASE, API_KEY } from "../../api/Tmdb";
@@ -45,21 +45,27 @@ const Navbar = () => {
             <a href="#">GUIDES</a>
           </li>
         </ul>
-        <DivInput>
-          <input
-            type="search"
-            placeholder="Search movies"
-            ref={input}
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-          <a>
-            <FiSearch cursor="pointer" fontSize={18} />
-          </a>
-        </DivInput>
-        {moviesState.map((item, key) => (
-          <MoviesRow title={item.title} popularity ={item.popularity}/>
-        ))}
+        <GetList>
+          <DivInput>
+            <input
+              type="search"
+              placeholder="Search movies"
+              ref={input}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+            <a>
+              <FiSearch cursor="pointer" fontSize={18} />
+            </a>
+          </DivInput>
+          {inputValue !== "" && (
+            <ListMovies>
+              {moviesState.map((item, key) => (
+                <MoviesRow titles={item.title} vote_average={item.vote_average} movie_img={item.poster_path}/>
+              ))}
+            </ListMovies>
+          )}
+        </GetList>
       </nav>
     </NavbarStyle>
   );
