@@ -11,14 +11,14 @@ const Navbar = () => {
   const input = useRef("");
 
   const movieSearch = async () => {
-    const config = {
+    const config = await {
       method: "get",
       url: `${API_BASE}/search/movie?api_key=${API_KEY}&language=pt-BR&query=${input.current.value}`,
       headers: {
         "Content-Type": "application/json",
       },
     };
-    axios(config)
+    await axios(config)
       .then((res) => setMoviesState(res.data.results))
       .catch((err) => console.error(err));
   };
@@ -61,7 +61,7 @@ const Navbar = () => {
           {inputValue !== "" && (
             <ListMovies>
               {moviesState.map((item, key) => (
-                <MoviesRow titles={item.title} vote_average={item.vote_average} movie_img={item.poster_path}/>
+                <MoviesRow titles={item.title} vote_average={item.vote_average} movie_img={item.poster_path} id={item.id}/>
               ))}
             </ListMovies>
           )}

@@ -70,6 +70,7 @@ export const DivInput = styled.div`
 export const InputStyle = styled.div``;
 
 export const List = styled.div``;
+
 export const GetList = styled.div`
   display: flex;
   align-items: center;
@@ -78,7 +79,7 @@ export const GetList = styled.div`
 `;
 
 export const ListMovies = styled.div`
-  margin-top: 32rem;
+  margin-top: 33rem;
   position: absolute;
   width: 15rem;
   height: 50vh;

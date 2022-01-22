@@ -15,12 +15,12 @@ import {
 import theMovie from "../../img/the_movie.svg";
 import { AiFillStar, AiOutlineStar, AiFillPlayCircle } from "react-icons/ai";
 
-const MainContent = () => {
+const MainContent = ({ titleMovie, img }) => {
   return (
     <Content>
       <FirstContent>
         <TitleText>
-          <h1>Homem-Aranha: Sem Volta para Casa</h1>
+          <h1>{titleMovie}</h1>
         </TitleText>
         <StarsInfo>
           <Stars>
@@ -49,7 +49,8 @@ const MainContent = () => {
         </TrailerMovie>
       </FirstContent>
       <CoverTheMovie>
-        <img src={theMovie} alt="Capa Homem Aranha" />
+        <img src={`https://image.tmdb.org/t/p/original/${img}`} />
+        {/* <img src={theMovie} alt="Capa Homem Aranha" /> */}
       </CoverTheMovie>
     </Content>
   );
