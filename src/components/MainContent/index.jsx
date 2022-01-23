@@ -12,10 +12,9 @@ import {
   CoverTheMovie,
 } from "./style";
 
-import theMovie from "../../img/the_movie.svg";
 import { AiFillStar, AiOutlineStar, AiFillPlayCircle } from "react-icons/ai";
 
-const MainContent = ({ titleMovie, img }) => {
+const MainContent = ({ titleMovie, film_img, overview }) => {
   return (
     <Content>
       <FirstContent>
@@ -36,20 +35,14 @@ const MainContent = ({ titleMovie, img }) => {
           </ButtonTrailer>
         </StarsInfo>
         <Description>
-          <p>
-            Em Homem-Aranha: Sem Volta para Casa, Peter Parker (Tom Holland)
-            precisará lidar com as consequências da sua identidade como o herói
-            mais querido do mundo após ter sido revelada pela reportagem do
-            Clarim Diário, com uma gravação feita por Mysterio (Jake Gyllenhaal)
-            no filme anterior.
-          </p>
+          <p>{overview}</p>
         </Description>
         <TrailerMovie>
           <AiFillPlayCircle color="#b912129d" fontSize={80} />
         </TrailerMovie>
       </FirstContent>
       <CoverTheMovie>
-        <img src={`https://image.tmdb.org/t/p/original/${img}`} />
+        <img src={`https://image.tmdb.org/t/p/original/${film_img}`} />
         {/* <img src={theMovie} alt="Capa Homem Aranha" /> */}
       </CoverTheMovie>
     </Content>

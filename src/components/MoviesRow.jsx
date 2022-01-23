@@ -1,50 +1,32 @@
 import React, { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
 import styled from "styled-components";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import MainContent from "./MainContent";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
-const MoviesRow = ({ titles, vote_average, movie_img, id }) => {
-  // const [id, setId] = useState('')
-
+const MoviesRow = ({ titles, vote_average, movie_img, id, overview }) => {
   return (
     <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to={`/${id}`}>
-              <FlatList>
-                <MovieImgStyle>
-                  <img
-                    src={`https://image.tmdb.org/t/p/original/${movie_img}`}
-                  />
-                </MovieImgStyle>
-                <InfoMovies>
-                  {titles.length >= 16 ? (
-                    <h2 title={titles}>{titles.slice(0, 16)}...</h2>
-                  ) : (
-                    <h2>{titles}</h2>
-                  )}
-                  <p>{vote_average}</p>
-                </InfoMovies>
-              </FlatList>
-            </Link>
-          </li>
-        </ul>
+      <Link to={`/movie=${id}`}>
+        <FlatList key={id}>
+          <MovieImgStyle>
+            <img src={`https://image.tmdb.org/t/p/original/${movie_img}`} />
+          </MovieImgStyle>
+          <InfoMovies>
+            {titles.length >= 16 ? (
+              <h2 title={titles}>{titles.slice(0, 16)}...</h2>
+            ) : (
+              <h2>{titles}</h2>
+            )}
+            <p>{vote_average}</p>
+          </InfoMovies>
+        </FlatList>
+      </Link>
 
-        <hr />
-        <Switch>
-          <Route path={`/${id}`}>
-            <MainContent titleMovie={titles} img={movie_img}/>
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route path={`/movie=${id}`}>
+          <MainContent titleMovie={titles} film_img={movie_img} overview={overview}/>
+        </Route>
+      </Switch>
     </Router>
   );
 };

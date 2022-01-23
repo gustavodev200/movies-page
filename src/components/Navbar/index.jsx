@@ -61,7 +61,7 @@ const Navbar = () => {
           {inputValue !== "" && (
             <ListMovies>
               {moviesState.map((item, key) => (
-                <MoviesRow titles={item.title} vote_average={item.vote_average} movie_img={item.poster_path} id={item.id}/>
+                <MoviesRow titles={item.title} vote_average={item.vote_average} movie_img={item.poster_path} id={item.id} overview={item.overview}/>
               ))}
             </ListMovies>
           )}
