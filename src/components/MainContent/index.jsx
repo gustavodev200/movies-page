@@ -13,13 +13,15 @@ import {
 } from "./style";
 
 import { AiFillStar, AiOutlineStar, AiFillPlayCircle } from "react-icons/ai";
+import { useLocation } from "react-router-dom";
 
-const MainContent = ({ titleMovie, film_img, overview }) => {
+const MainContent = () => {
+
   return (
     <Content>
       <FirstContent>
         <TitleText>
-          <h1>{titleMovie}</h1>
+          <h1>Homem Aranha</h1>
         </TitleText>
         <StarsInfo>
           <Stars>
@@ -35,15 +37,14 @@ const MainContent = ({ titleMovie, film_img, overview }) => {
           </ButtonTrailer>
         </StarsInfo>
         <Description>
-          <p>{overview}</p>
+          <p>sinopse</p>
         </Description>
         <TrailerMovie>
           <AiFillPlayCircle color="#b912129d" fontSize={80} />
         </TrailerMovie>
       </FirstContent>
       <CoverTheMovie>
-        <img src={`https://image.tmdb.org/t/p/original/${film_img}`} />
-        {/* <img src={theMovie} alt="Capa Homem Aranha" /> */}
+        {/* <img src={`https://image.tmdb.org/t/p/original/${film_img}`} /> */}
       </CoverTheMovie>
     </Content>
   );

@@ -25,7 +25,6 @@ const Navbar = () => {
 
   useEffect(() => {
     movieSearch();
-    console.log(input.current.value);
   }, [inputValue]);
 
   return (

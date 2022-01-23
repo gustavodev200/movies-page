@@ -22,11 +22,11 @@ const MoviesRow = ({ titles, vote_average, movie_img, id, overview }) => {
         </FlatList>
       </Link>
 
-      <Switch>
+      {/* <Switch>
         <Route path={`/movie=${id}`}>
           <MainContent titleMovie={titles} film_img={movie_img} overview={overview}/>
         </Route>
-      </Switch>
+      </Switch> */}
     </Router>
   );
 };
