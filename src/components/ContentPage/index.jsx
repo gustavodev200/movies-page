@@ -1,15 +1,120 @@
-import React from "react";
 import MainContent from "../MainContent";
-import Navbar from "../Navbar";
+// import Navbar from "../Navbar";
 import { Container } from "./container";
 import { ContentStyle } from "./styles";
+import React, { useEffect, useRef, useState } from "react";
+import { DivInput, GetList, ListMovies, NavbarStyle } from "../Navbar/styles";
+import { FiSearch } from "react-icons/fi";
+import axios from "axios";
+import { API_BASE, API_KEY } from "../../api/Tmdb";
+// import MoviesRow from "../MoviesRow";
+
+import { FlatList, MovieImgStyle, InfoMovies } from "../MoviesRow.js";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const ContentPage = () => {
+  const [inputValue, setInputValue] = useState("");
+  const [moviesState, setMoviesState] = useState([]);
+  const [movieArray, setMovieArray] = useState([])
+  const [movieTrailer, setMovieTrailer] = useState('')
+  const input = useRef("");
+
+  const movieSearch = async () => {
+    const config = await {
+      method: "get",
+      url: `${API_BASE}/search/movie?api_key=${API_KEY}&language=pt-BR&query=${input.current.value}`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    await axios(config)
+      .then((res) => setMoviesState(res.data.results))
+      .catch((err) => console.error(err));
+  };
+
+  const searchOneMovie = async (id) => {
+    const movie = await axios.get(`${API_BASE}/movie/${id}?api_key=${API_KEY}&language=pt-BR`)
+    const data = movie.data
+
+    const movietrailer = await axios.get(`${API_BASE}/movie/${id}/videos?api_key=${API_KEY}&language=pt-BR`)
+
+    return (
+      setMovieArray(data),
+      setMovieTrailer(movietrailer.data.results[0].key),
+      console.log(movietrailer.data.results[0].key)
+    )
+  }
+
+  useEffect(() => {
+    movieSearch();
+  }, [inputValue]);
+
   return (
     <ContentStyle>
       <Container>
-        <Navbar />
-        <MainContent />
+        <NavbarStyle>
+          <nav>
+            <ul>
+              <li>
+                <a href="#">HOME</a>
+              </li>
+              <li>
+                <a href="#">MOVIES</a>
+              </li>
+              <li>
+                <a href="#">TV SHOWS</a>
+              </li>
+              <li>
+                <a href="#">GUIDES</a>
+              </li>
+            </ul>
+            <GetList>
+              <DivInput>
+                <input
+                  type="search"
+                  placeholder="Search movies"
+                  ref={input}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                />
+                <a>
+                  <FiSearch cursor="pointer" fontSize={18} />
+                </a>
+              </DivInput>
+              {inputValue !== "" && (
+                <ListMovies>
+                  {moviesState.map((item, key) => (
+                    <Router>
+                      <Link to={`/${item.id}`} onClick={() => {
+                        searchOneMovie(item.id)
+                      }}>
+                        <FlatList key={item.id}>
+                          <MovieImgStyle>
+                            <img
+                              src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                            />
+                          </MovieImgStyle>
+                          <InfoMovies>
+                            {item.title.length >= 16 ? (
+                              <h2 title={item.title}>
+                                {item.title.slice(0, 16)}...
+                              </h2>
+                            ) : (
+                              <h2>{item.title}</h2>
+                            )}
+                            <p>{item.vote_average}</p>
+                          </InfoMovies>
+                        </FlatList>
+                      </Link>
+                    </Router>
+                    // <MoviesRow key={key} titles={item.title} vote_average={item.vote_average} movie_img={item.poster_path} id={item.id} overview={item.overview}/>
+                  ))}
+                </ListMovies>
+              )}
+            </GetList>
+          </nav>
+        </NavbarStyle>
+        <MainContent movie={movieArray} trailerKey={movieTrailer} />
       </Container>
     </ContentStyle>
   );

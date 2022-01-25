@@ -1,12 +1,15 @@
 import React from "react";
 import ContentPage from "../../components/ContentPage";
+import MovieProvider from "../../contexts";
 import { GlobalApp } from "./style";
 
 const App = () => {
   return (
-    <GlobalApp>
-      <ContentPage />
-    </GlobalApp>
+    <MovieProvider>
+      <GlobalApp>
+        <ContentPage />
+      </GlobalApp>
+    </MovieProvider>
   );
 };
 
