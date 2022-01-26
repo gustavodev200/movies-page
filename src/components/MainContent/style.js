@@ -68,9 +68,11 @@ export const TrailerMovie = styled.div`
   justify-content: center;
   width: 60%;
   height: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
   cursor: pointer;
+  margin-top: 1rem;
+   iframe {
+    border-radius: 3rem;
+   }
 `;
 
 export const CoverTheMovie = styled.div`
@@ -78,6 +80,7 @@ export const CoverTheMovie = styled.div`
   height: 60%;
 
   img {
+    border-radius: 3rem;
     width: 85%;
   }
 `;

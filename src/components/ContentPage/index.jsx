@@ -1,22 +1,21 @@
 import MainContent from "../MainContent";
-// import Navbar from "../Navbar";
 import { Container } from "./container";
 import { ContentStyle } from "./styles";
 import React, { useEffect, useRef, useState } from "react";
-import { DivInput, GetList, ListMovies, NavbarStyle } from "../Navbar/styles";
+import { DivInput, GetList, ListMovies, NavbarStyle } from "./navbar_styles";
 import { FiSearch } from "react-icons/fi";
 import axios from "axios";
 import { API_BASE, API_KEY } from "../../api/Tmdb";
-// import MoviesRow from "../MoviesRow";
 
-import { FlatList, MovieImgStyle, InfoMovies } from "../MoviesRow.js";
+import { FlatList, MovieImgStyle, InfoMovies } from "./MoviesRow.js";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const ContentPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [moviesState, setMoviesState] = useState([]);
-  const [movieArray, setMovieArray] = useState([])
-  const [movieTrailer, setMovieTrailer] = useState('')
+  const [movieArray, setMovieArray] = useState([]);
+  const [movieError, setMovieError] = useState('')
+  const [movieTrailer, setMovieTrailer] = useState("");
   const input = useRef("");
 
   const movieSearch = async () => {
@@ -33,17 +32,17 @@ const ContentPage = () => {
   };
 
   const searchOneMovie = async (id) => {
-    const movie = await axios.get(`${API_BASE}/movie/${id}?api_key=${API_KEY}&language=pt-BR`)
-    const data = movie.data
+    const movie = await axios.get(
+      `${API_BASE}/movie/${id}?api_key=${API_KEY}&language=pt-BR`
+    );
+    const data = movie.data;
 
-    const movietrailer = await axios.get(`${API_BASE}/movie/${id}/videos?api_key=${API_KEY}&language=pt-BR`)
-
-    return (
-      setMovieArray(data),
-      setMovieTrailer(movietrailer.data.results[0].key),
-      console.log(movietrailer.data.results[0].key)
+    const movietrailer = await axios.get(
+      `${API_BASE}/movie/${id}/videos?api_key=${API_KEY}&language=pt-BR`
     )
-  }
+    .then((res) => setMovieTrailer(res.data.results[0].key), setMovieArray(data))
+    .catch((err) => setMovieError("Trailer Indisponível!"));
+  };
 
   useEffect(() => {
     movieSearch();
@@ -85,9 +84,12 @@ const ContentPage = () => {
                 <ListMovies>
                   {moviesState.map((item, key) => (
                     <Router>
-                      <Link to={`/${item.id}`} onClick={() => {
-                        searchOneMovie(item.id)
-                      }}>
+                      <Link
+                        to={`/${item.id}`}
+                        onClick={() => {
+                          searchOneMovie(item.id);
+                        }}
+                      >
                         <FlatList key={item.id}>
                           <MovieImgStyle>
                             <img
@@ -107,14 +109,13 @@ const ContentPage = () => {
                         </FlatList>
                       </Link>
                     </Router>
-                    // <MoviesRow key={key} titles={item.title} vote_average={item.vote_average} movie_img={item.poster_path} id={item.id} overview={item.overview}/>
                   ))}
                 </ListMovies>
               )}
             </GetList>
           </nav>
         </NavbarStyle>
-        <MainContent movie={movieArray} trailerKey={movieTrailer} />
+        <MainContent movie={movieArray} trailerKey={movieTrailer} trailerError={movieError}/>
       </Container>
     </ContentStyle>
   );
