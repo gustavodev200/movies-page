@@ -21,10 +21,14 @@ export const NavbarStyle = styled.div`
 
       li {
         margin: 0 2.25rem 0 0;
+        &:nth-child(1) {
+          border-bottom: 2px solid #fff;
+        }
         a {
           text-decoration: none;
           color: #fff;
           font-weight: bold;
+
           &:hover {
             border-bottom: 2px solid #fff;
           }

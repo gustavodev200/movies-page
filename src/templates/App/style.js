@@ -7,6 +7,6 @@ export const GlobalApp = styled.section`
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background-image: url(${BG});
+    background-image: url(${props => props.bg});
     background-size: cover;
 `;

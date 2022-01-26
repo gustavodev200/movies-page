@@ -39,7 +39,7 @@ export const ButtonTrailer = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: .1rem 1rem;
+  padding: 0.1rem 1rem;
   margin-left: 2rem;
   background-color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
@@ -58,7 +58,7 @@ export const Description = styled.div`
   p {
     color: white;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 `;
 
@@ -70,17 +70,20 @@ export const TrailerMovie = styled.div`
   height: 50%;
   cursor: pointer;
   margin-top: 1rem;
-   iframe {
+  iframe {
     border-radius: 3rem;
-   }
+  }
 `;
 
 export const CoverTheMovie = styled.div`
   width: 50%;
   height: 60%;
+  margin-bottom: 7rem;
 
   img {
     border-radius: 3rem;
     width: 85%;
+    -webkit-box-shadow: -12px 10px 10px -1px rgba(0, 0, 0, 0.89);
+    box-shadow: -12px 10px 10px -1px rgba(0, 0, 0, 0.89);
   }
 `;

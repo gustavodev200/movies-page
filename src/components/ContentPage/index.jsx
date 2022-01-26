@@ -9,12 +9,13 @@ import { API_BASE, API_KEY } from "../../api/Tmdb";
 
 import { FlatList, MovieImgStyle, InfoMovies } from "./MoviesRow.js";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { GlobalApp } from "../../templates/App/style";
 
 const ContentPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [moviesState, setMoviesState] = useState([]);
   const [movieArray, setMovieArray] = useState([]);
-  const [movieError, setMovieError] = useState('')
+  const [movieError, setMovieError] = useState("");
   const [movieTrailer, setMovieTrailer] = useState("");
   const input = useRef("");
 
@@ -37,11 +38,13 @@ const ContentPage = () => {
     );
     const data = movie.data;
 
-    const movietrailer = await axios.get(
-      `${API_BASE}/movie/${id}/videos?api_key=${API_KEY}&language=pt-BR`
-    )
-    .then((res) => setMovieTrailer(res.data.results[0].key), setMovieArray(data))
-    .catch((err) => setMovieError("Trailer Indisponível!"));
+    const movietrailer = await axios
+      .get(`${API_BASE}/movie/${id}/videos?api_key=${API_KEY}&language=pt-BR`)
+      .then(
+        (res) => setMovieTrailer(res.data.results[0].key),
+        setMovieArray(data)
+      )
+      .catch((err) => setMovieError("Trailer Indisponível!"));
   };
 
   useEffect(() => {
@@ -49,75 +52,81 @@ const ContentPage = () => {
   }, [inputValue]);
 
   return (
-    <ContentStyle>
-      <Container>
-        <NavbarStyle>
-          <nav>
-            <ul>
-              <li>
-                <a href="#">HOME</a>
-              </li>
-              <li>
-                <a href="#">MOVIES</a>
-              </li>
-              <li>
-                <a href="#">TV SHOWS</a>
-              </li>
-              <li>
-                <a href="#">GUIDES</a>
-              </li>
-            </ul>
-            <GetList>
-              <DivInput>
-                <input
-                  type="search"
-                  placeholder="Search movies"
-                  ref={input}
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                />
-                <a>
-                  <FiSearch cursor="pointer" fontSize={18} />
-                </a>
-              </DivInput>
-              {inputValue !== "" && (
-                <ListMovies>
-                  {moviesState.map((item, key) => (
-                    <Router>
-                      <Link
-                        to={`/${item.id}`}
-                        onClick={() => {
-                          searchOneMovie(item.id);
-                        }}
-                      >
-                        <FlatList key={item.id}>
-                          <MovieImgStyle>
-                            <img
-                              src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-                            />
-                          </MovieImgStyle>
-                          <InfoMovies>
-                            {item.title.length >= 16 ? (
-                              <h2 title={item.title}>
-                                {item.title.slice(0, 16)}...
-                              </h2>
-                            ) : (
-                              <h2>{item.title}</h2>
-                            )}
-                            <p>{item.vote_average}</p>
-                          </InfoMovies>
-                        </FlatList>
-                      </Link>
-                    </Router>
-                  ))}
-                </ListMovies>
-              )}
-            </GetList>
-          </nav>
-        </NavbarStyle>
-        <MainContent movie={movieArray} trailerKey={movieTrailer} trailerError={movieError}/>
-      </Container>
-    </ContentStyle>
+    <GlobalApp bg={`https://image.tmdb.org/t/p/original/${movieArray.backdrop_path}`}>
+      <ContentStyle>
+        <Container>
+          <NavbarStyle>
+            <nav>
+              <ul>
+                <li>
+                  <a href="#">HOME</a>
+                </li>
+                <li>
+                  <a href="#">MOVIES</a>
+                </li>
+                <li>
+                  <a href="#">TV SHOWS</a>
+                </li>
+                <li>
+                  <a href="#">GUIDES</a>
+                </li>
+              </ul>
+              <GetList>
+                <DivInput>
+                  <input
+                    type="search"
+                    placeholder="Search movies"
+                    ref={input}
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                  />
+                  <a>
+                    <FiSearch cursor="pointer" fontSize={18} />
+                  </a>
+                </DivInput>
+                {inputValue !== "" && (
+                  <ListMovies>
+                    {moviesState.map((item, key) => (
+                      <Router>
+                        <Link
+                          to={`/${item.id}`}
+                          onClick={() => {
+                            searchOneMovie(item.id);
+                          }}
+                        >
+                          <FlatList key={item.id}>
+                            <MovieImgStyle>
+                              <img
+                                src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                              />
+                            </MovieImgStyle>
+                            <InfoMovies>
+                              {item.title.length >= 16 ? (
+                                <h2 title={item.title}>
+                                  {item.title.slice(0, 16)}...
+                                </h2>
+                              ) : (
+                                <h2>{item.title}</h2>
+                              )}
+                              <p>{item.vote_average}</p>
+                            </InfoMovies>
+                          </FlatList>
+                        </Link>
+                      </Router>
+                    ))}
+                  </ListMovies>
+                )}
+              </GetList>
+            </nav>
+          </NavbarStyle>
+          <MainContent
+            movie={movieArray}
+            trailerKey={movieTrailer}
+            trailerError={movieError}
+          />
+        </Container>
+      </ContentStyle>
+    </GlobalApp>
   );
 };
 
