@@ -11,6 +11,8 @@ import { FlatList, MovieImgStyle, InfoMovies } from "./MoviesRow.js";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { GlobalApp } from "../../templates/App/style";
 
+import bg_default from "../../img/bg_spider.svg";
+
 const ContentPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [moviesState, setMoviesState] = useState([]);
@@ -18,6 +20,8 @@ const ContentPage = () => {
   const [movieError, setMovieError] = useState("");
   const [movieTrailer, setMovieTrailer] = useState("");
   const input = useRef("");
+
+  const [loading, setLoading] = useState(true);
 
   const movieSearch = async () => {
     const config = await {
@@ -30,6 +34,7 @@ const ContentPage = () => {
     await axios(config)
       .then((res) => setMoviesState(res.data.results))
       .catch((err) => console.error(err));
+    setLoading(false);
   };
 
   const searchOneMovie = async (id) => {
@@ -47,12 +52,23 @@ const ContentPage = () => {
       .catch((err) => setMovieError("Trailer Indisponível!"));
   };
 
+  const movieBG = () => {
+    if (movieArray.backdrop_path === undefined) {
+      return bg_default;
+    } else if (movieArray.backdrop_path === null) {
+      return bg_default;
+    } else {
+      return `https://image.tmdb.org/t/p/original/${movieArray.backdrop_path}`;
+    }
+  };
+
   useEffect(() => {
     movieSearch();
   }, [inputValue]);
 
   return (
-    <GlobalApp bg={`https://image.tmdb.org/t/p/original/${movieArray.backdrop_path}`}>
+    <GlobalApp bg={movieBG()}>
+      {console.log(movieBG())}
       <ContentStyle>
         <Container>
           <NavbarStyle>
