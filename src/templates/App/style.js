@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import BG from '../../img/bg_spider.svg'
 
 export const GlobalApp = styled.section`
     display: flex;

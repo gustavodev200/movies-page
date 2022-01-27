@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {
   Content,
@@ -72,9 +72,10 @@ const MainContent = ({ movie, trailerKey, trailerError }) => {
         {movie.poster_path !== undefined ? (
           <img
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+            alt={`Movie: ${movie.title}`}
           />
         ) : (
-          <img src={moviePadrao} />
+          <img src={moviePadrao} alt="Homem-Aranha"/>
         )}
       </CoverTheMovie>
     </Content>

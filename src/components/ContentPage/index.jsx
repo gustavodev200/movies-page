@@ -7,8 +7,8 @@ import { FiSearch } from "react-icons/fi";
 import axios from "axios";
 import { API_BASE, API_KEY } from "../../api/Tmdb";
 
-import { FlatList, MovieImgStyle, InfoMovies } from "./MoviesRow.js";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { FlatList, MovieImgStyle, InfoMovies } from "./movies_row.js";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { GlobalApp } from "../../templates/App/style";
 
 import bg_default from "../../img/bg_spider.svg";
@@ -21,7 +21,7 @@ const ContentPage = () => {
   const [movieTrailer, setMovieTrailer] = useState("");
   const input = useRef("");
 
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   const movieSearch = async () => {
     const config = await {
@@ -34,7 +34,6 @@ const ContentPage = () => {
     await axios(config)
       .then((res) => setMoviesState(res.data.results))
       .catch((err) => console.error(err));
-    setLoading(false);
   };
 
   const searchOneMovie = async (id) => {
@@ -68,7 +67,6 @@ const ContentPage = () => {
 
   return (
     <GlobalApp bg={movieBG()}>
-      {console.log(movieBG())}
       <ContentStyle>
         <Container>
           <NavbarStyle>
