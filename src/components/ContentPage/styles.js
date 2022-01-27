@@ -21,4 +21,13 @@ export const ContentStyle = styled.div`
     box-shadow: inset 0 0 2000px rgba(0, 0, 0, 0.2);
     filter: blur(5px);
   }
+
+  @media screen and (max-width: 500px) {
+    display: flex;
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+  }
 `;

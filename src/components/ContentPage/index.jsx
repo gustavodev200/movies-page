@@ -6,11 +6,9 @@ import { DivInput, GetList, ListMovies, NavbarStyle } from "./navbar_styles";
 import { FiSearch } from "react-icons/fi";
 import axios from "axios";
 import { API_BASE, API_KEY } from "../../api/Tmdb";
-
 import { FlatList, MovieImgStyle, InfoMovies } from "./movies_row.js";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { GlobalApp } from "../../templates/App/style";
-
 import bg_default from "../../img/bg_spider.svg";
 
 const ContentPage = () => {

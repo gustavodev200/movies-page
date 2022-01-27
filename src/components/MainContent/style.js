@@ -4,6 +4,11 @@ export const Content = styled.main`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 700px) {
+    justify-content: center;
+    flex-direction: column;
+  }
 `;
 
 export const FirstContent = styled.main`
@@ -14,6 +19,11 @@ export const FirstContent = styled.main`
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const TitleText = styled.div`
@@ -73,6 +83,11 @@ export const TrailerMovie = styled.div`
   iframe {
     border-radius: 3rem;
   }
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    height: 60%;
+  }
 `;
 
 export const CoverTheMovie = styled.div`
@@ -85,5 +100,13 @@ export const CoverTheMovie = styled.div`
     width: 85%;
     -webkit-box-shadow: -12px 10px 10px -1px rgba(0, 0, 0, 0.89);
     box-shadow: -12px 10px 10px -1px rgba(0, 0, 0, 0.89);
+  }
+
+  @media screen and (max-width: 700px) {
+    position: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    margin-top: 3rem;
   }
 `;
