@@ -54,11 +54,11 @@ export const ButtonTrailer = styled.a`
 `;
 
 export const Description = styled.div`
-  max-width: 37rem;
+  max-width: 40rem;
   p {
     color: white;
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 `;
 

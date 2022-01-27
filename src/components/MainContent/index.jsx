@@ -52,7 +52,7 @@ const MainContent = ({ movie, trailerKey, trailerError }) => {
             </p>
           )}
         </Description>
-        {trailerKey !== "<empty string>" ? (
+        {trailerKey !== '<empty string>' ? (
           <TrailerMovie>
             <iframe
               width="560"
