@@ -9,7 +9,7 @@ ReactDOM.render(
     <Router>
       <GlobalStyle />
       <Switch>
-        <Route exact path="/:id">
+        <Route exact path="/">
           <App />
         </Route>
       </Switch>
