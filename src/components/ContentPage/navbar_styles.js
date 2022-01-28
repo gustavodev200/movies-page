@@ -83,6 +83,8 @@ export const GetList = styled.div`
 `;
 
 export const ListMovies = styled.div`
+  display: ${(props) => props.closeList};
+  flex-direction: column;
   margin-top: 33rem;
   position: absolute;
   width: 15rem;

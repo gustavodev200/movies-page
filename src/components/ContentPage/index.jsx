@@ -18,6 +18,7 @@ const ContentPage = () => {
   const [movieError, setMovieError] = useState("");
   const [movieTrailer, setMovieTrailer] = useState("");
   const input = useRef("");
+  const [removeList, setRemoveList] = useState("flex");
 
   // const [loading, setLoading] = useState(true);
 
@@ -59,7 +60,12 @@ const ContentPage = () => {
     }
   };
 
+  // const handleCloseList = () => {
+  //   setRemoveList("none");
+  // };
+
   useEffect(() => {
+    // handleCloseList();
     movieSearch();
   }, [inputValue]);
 
