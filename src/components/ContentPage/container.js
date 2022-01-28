@@ -7,7 +7,10 @@ export const Container = styled.div`
   height: 90%;
   margin: 3rem 10rem;
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 700px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0;
   }
 `;

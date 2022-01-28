@@ -22,12 +22,11 @@ export const ContentStyle = styled.div`
     filter: blur(5px);
   }
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 700px) {
+    overflow-y: scroll;
     display: flex;
-
     text-align: center;
     justify-content: center;
     align-items: center;
-    overflow-y: scroll;
   }
 `;

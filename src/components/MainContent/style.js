@@ -20,7 +20,7 @@ export const FirstContent = styled.main`
   justify-content: space-between;
   flex-direction: column;
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 700px) {
     width: 100%;
     height: 100%;
   }
@@ -86,7 +86,11 @@ export const TrailerMovie = styled.div`
 
   @media screen and (max-width: 700px) {
     width: 100%;
-    height: 60%;
+    iframe {
+      width: 100%;
+      height:100%;
+      border-radius: 1rem;
+    }
   }
 `;
 
@@ -104,7 +108,7 @@ export const CoverTheMovie = styled.div`
 
   @media screen and (max-width: 700px) {
     position: block;
-    width: 100%;
+    width: 90%;
     height: 100%;
     margin: 0;
     margin-top: 3rem;
