@@ -21,17 +21,12 @@ export const NavbarStyle = styled.div`
 
       li {
         margin: 0 2.25rem 0 0;
-        &:nth-child(1) {
-          border-bottom: 2px solid #fff;
-        }
         a {
+          font-size: 1.5rem;
           text-decoration: none;
           color: #fff;
           font-weight: bold;
-
-          &:hover {
-            border-bottom: 2px solid #fff;
-          }
+          font-family: "Comforter", cursive;
         }
       }
     }
@@ -42,7 +37,7 @@ export const DivInput = styled.div`
   display: flex;
   align-items: center;
 
-  width: 15rem;
+  width: 95%;
   height: 2rem;
   margin-bottom: 0.5rem;
 
@@ -76,6 +71,7 @@ export const InputStyle = styled.div``;
 export const List = styled.div``;
 
 export const GetList = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,10 +79,11 @@ export const GetList = styled.div`
 `;
 
 export const ListMovies = styled.div`
+  position: absolute;
+  top: 2rem;
+  left: 0;
   display: ${(props) => props.closeList};
   flex-direction: column;
-  margin-top: 33rem;
-  position: absolute;
   width: 15rem;
   height: 50vh;
   background: rgba(0, 0, 0, 0.3);
@@ -95,4 +92,8 @@ export const ListMovies = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media screen and (max-width: 700px) {
+    width: 10rem;
+  } 
 `;

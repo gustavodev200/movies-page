@@ -28,6 +28,7 @@ export const FirstContent = styled.main`
 
 export const TitleText = styled.div`
   display: flex;
+  margin-bottom: 1.5rem;
   h1 {
     margin: 0;
     font-size: 2rem;
@@ -73,14 +74,15 @@ export const Description = styled.div`
 `;
 
 export const TrailerMovie = styled.div`
+  width: 60%;
+  height: 40%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60%;
-  height: 50%;
   cursor: pointer;
   margin-top: 1rem;
   iframe {
+    width: 100%;
     border-radius: 3rem;
   }
 

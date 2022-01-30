@@ -10,6 +10,7 @@ import { FlatList, MovieImgStyle, InfoMovies } from "./movies_row.js";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { GlobalApp } from "../../templates/App/style";
 import bg_default from "../../img/bg_spider.svg";
+import { CgMenuLeft } from "react-icons/cg";
 
 const ContentPage = () => {
   const [inputValue, setInputValue] = useState("");
@@ -18,6 +19,7 @@ const ContentPage = () => {
   const [movieError, setMovieError] = useState("");
   const [movieTrailer, setMovieTrailer] = useState("");
   const input = useRef("");
+  const [menuMobile, setMobile] = useState(window.screen.width);
   const [removeList, setRemoveList] = useState("flex");
 
   // const [loading, setLoading] = useState(true);
@@ -65,6 +67,10 @@ const ContentPage = () => {
   // };
 
   useEffect(() => {
+    console.log(menuMobile)
+  }, [menuMobile])
+
+  useEffect(() => {
     // handleCloseList();
     movieSearch();
   }, [inputValue]);
@@ -74,68 +80,59 @@ const ContentPage = () => {
       <ContentStyle>
         <Container>
           <NavbarStyle>
-            <nav>
-              <ul>
-                <li>
-                  <a href="#">HOME</a>
-                </li>
-                <li>
-                  <a href="#">MOVIES</a>
-                </li>
-                <li>
-                  <a href="#">TV SHOWS</a>
-                </li>
-                <li>
-                  <a href="#">GUIDES</a>
-                </li>
-              </ul>
-              <GetList>
-                <DivInput>
-                  <input
-                    type="search"
-                    placeholder="Search movies"
-                    ref={input}
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                  />
-                  <a>
-                    <FiSearch cursor="pointer" fontSize={18} />
-                  </a>
-                </DivInput>
-                {inputValue !== "" && (
-                  <ListMovies>
-                    {moviesState.map((item, key) => (
-                      <Router>
-                        <Link
-                          to={`/${item.id}`}
-                          onClick={() => {
-                            searchOneMovie(item.id);
-                          }}
-                        >
-                          <FlatList key={item.id}>
-                            <MovieImgStyle>
-                              <img
-                                src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-                              />
-                            </MovieImgStyle>
-                            <InfoMovies>
-                              {item.title.length >= 16 ? (
-                                <h2 title={item.title}>
-                                  {item.title.slice(0, 16)}...
-                                </h2>
-                              ) : (
-                                <h2>{item.title}</h2>
-                              )}
-                              <p>{item.vote_average}</p>
-                            </InfoMovies>
-                          </FlatList>
-                        </Link>
-                      </Router>
-                    ))}
-                  </ListMovies>
-                )}
-              </GetList>
-            </nav>
+              <nav>
+                <ul>
+                  <li>
+                    <a>Movies GL</a>
+                  </li>
+                </ul>
+                <GetList>
+                  <DivInput>
+                    <input
+                      type="search"
+                      placeholder="Search movies"
+                      ref={input}
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                    />
+                    <a>
+                      <FiSearch cursor="pointer" fontSize={18} />
+                    </a>
+                  </DivInput>
+                  {inputValue !== "" && (
+                    <ListMovies>
+                      {moviesState.map((item, key) => (
+                        <Router>
+                          <Link
+                            to={`/${item.id}`}
+                            onClick={() => {
+                              searchOneMovie(item.id);
+                            }}
+                          >
+                            <FlatList key={item.id}>
+                              <MovieImgStyle>
+                                <img
+                                  src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                                />
+                              </MovieImgStyle>
+                              <InfoMovies>
+                                {item.title.length >= 16 ? (
+                                  <h2 title={item.title}>
+                                    {item.title.slice(0, 16)}...
+                                  </h2>
+                                ) : (
+                                  <h2>{item.title}</h2>
+                                )}
+                                <p>{item.vote_average}</p>
+                              </InfoMovies>
+                            </FlatList>
+                          </Link>
+                        </Router>
+                      ))}
+                    </ListMovies>
+                  )}
+                </GetList>
+              </nav>
           </NavbarStyle>
           <MainContent
             movie={movieArray}

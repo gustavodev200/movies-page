@@ -8,9 +8,6 @@ export const Container = styled.div`
   margin: 3rem 10rem;
 
   @media screen and (max-width: 700px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin: 0;
   }
 `;
