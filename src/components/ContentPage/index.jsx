@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import { GlobalApp } from "../../templates/App/style";
 import bg_default from "../../img/bg_spider.svg";
 import { CgMenuLeft } from "react-icons/cg";
+import useComponentVisibility from "../../hooks/UseComponentVisibility";
 
 const ContentPage = () => {
   const [inputValue, setInputValue] = useState("");
@@ -21,7 +22,7 @@ const ContentPage = () => {
   const input = useRef("");
   const [menuMobile, setMobile] = useState(window.screen.width);
   const [removeList, setRemoveList] = useState("flex");
-
+  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisibility(false);
   // const [loading, setLoading] = useState(true);
 
   const movieSearch = async () => {
@@ -62,9 +63,7 @@ const ContentPage = () => {
     }
   };
 
-  // const handleCloseList = () => {
-  //   setRemoveList("none");
-  // };
+  
 
   useEffect(() => {
     console.log(menuMobile)
@@ -93,14 +92,17 @@ const ContentPage = () => {
                       placeholder="Search movies"
                       ref={input}
                       value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
+                      onChange={(e) => {
+                        setInputValue(e.target.value)
+                        setIsComponentVisible(true)
+                      }}
                     />
                     <a>
                       <FiSearch cursor="pointer" fontSize={18} />
                     </a>
                   </DivInput>
-                  {inputValue !== "" && (
-                    <ListMovies>
+                  {isComponentVisible && (
+                    <ListMovies ref={ref}>
                       {moviesState.map((item, key) => (
                         <Router>
                           <Link
@@ -109,7 +111,7 @@ const ContentPage = () => {
                               searchOneMovie(item.id);
                             }}
                           >
-                            <FlatList key={item.id}>
+                            <FlatList key={item.id} onClick={()=> setIsComponentVisible(false)}>
                               <MovieImgStyle>
                                 <img
                                   src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
